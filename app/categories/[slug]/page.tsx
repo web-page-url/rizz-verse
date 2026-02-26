@@ -2,10 +2,11 @@
 
 import { motion } from "framer-motion";
 import { useParams, useRouter } from "next/navigation";
-import { Heart, Sparkles, Crown, ArrowLeft, Copy, Check, Share2 } from "lucide-react";
+import { Heart, Sparkles, Crown, ArrowLeft, Copy, Check, Share2, Volume2, Square } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
+import { useVoice } from "@/hooks/useVoice";
 import { RIZZ_LINES, CATEGORY_DATA, CategoryData } from "@/lib/rizzData";
 
 export default function CategoryPage() {
@@ -13,6 +14,8 @@ export default function CategoryPage() {
     const router = useRouter();
     const slug = params.slug as string;
     const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
+    const { speak, isSpeaking } = useVoice();
+
 
     const category = CATEGORY_DATA.find((c: CategoryData) => c.slug === slug);
 
@@ -92,6 +95,20 @@ export default function CategoryPage() {
                                     "{line.text}"
                                 </div>
                                 <div className="flex items-center gap-3 shrink-0">
+                                    <button
+                                        onClick={() => {
+                                            const lang = (category.vibe === "Bollywood" || category.vibe === "Shayari Mode") ? "hi" : "en";
+                                            speak(line.text, `line-${i}`, lang);
+                                        }}
+                                        className={cn(
+                                            "h-12 w-12 flex items-center justify-center rounded-2xl transition-all",
+                                            isSpeaking === `line-${i}`
+                                                ? "bg-white text-brand-pink scale-110"
+                                                : "bg-foreground/5 hover:bg-foreground/10 text-foreground"
+                                        )}
+                                    >
+                                        {isSpeaking === `line-${i}` ? <Square size={18} fill="currentColor" /> : <Volume2 size={18} />}
+                                    </button>
                                     <button
                                         onClick={() => handleCopy(line.text, i)}
                                         className={cn(

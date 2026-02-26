@@ -1,11 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Zap, Crown } from "lucide-react";
+import { Zap, Crown, Volume2, Square } from "lucide-react";
 import { CATEGORY_DATA } from "@/lib/rizzData";
 import Link from "next/link";
+import { useVoice } from "@/hooks/useVoice";
+import { cn } from "@/lib/utils";
 
 export default function CategoryShowcase() {
+    const { speak, isSpeaking } = useVoice();
+
     return (
         <section id="categories" className="py-24 px-4 bg-gradient-to-b from-transparent to-background/50">
             <div className="mx-auto max-w-7xl">
@@ -56,7 +60,23 @@ export default function CategoryShowcase() {
                                     </div>
                                 </div>
 
-                                <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <div className="absolute bottom-6 right-6 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <button
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            e.stopPropagation();
+                                            const lang = (cat.vibe === "Bollywood" || cat.vibe === "Shayari Mode") ? "hi" : "en";
+                                            speak(`${cat.title}. ${cat.desc} Example: ${cat.preview}`, `cat-${cat.slug}`, lang);
+                                        }}
+                                        className={cn(
+                                            "flex h-10 w-10 items-center justify-center rounded-full transition-all",
+                                            isSpeaking === `cat-${cat.slug}`
+                                                ? "bg-white text-brand-pink scale-110"
+                                                : "bg-brand-pink/20 text-brand-pink hover:bg-brand-pink hover:text-white"
+                                        )}
+                                    >
+                                        {isSpeaking === `cat-${cat.slug}` ? <Square size={18} fill="currentColor" /> : <Volume2 size={18} />}
+                                    </button>
                                     <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-pink text-white">
                                         <Zap size={20} fill="currentColor" />
                                     </div>
