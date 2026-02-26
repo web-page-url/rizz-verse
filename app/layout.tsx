@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 
   openGraph: {
     title: "RizzVerse | Where Words Captures Hearts",
-    description: "Neural-powered charisma for the modern age. Elevate your game with AI-crafted charm.",
+    description: "RizzVerse - Where Words Captures Hearts. Neural-powered charisma for the modern age.",
     url: baseUrl,
     siteName: "RizzVerse",
     images: [
