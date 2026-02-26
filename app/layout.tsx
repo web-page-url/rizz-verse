@@ -22,17 +22,17 @@ const baseUrl = "https://rizz-verse.vercel.app/";
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "RizzVerse | Personal AI Rizz Guru & Lab",
+    default: "RizzVerse | Where Words Captures Hearts",
     template: "%s | RizzVerse"
   },
-  description: "AI-powered attraction engineering. Generate personalized pickup lines, optimize for platform algorithms, and hear your rizz in premium neural voices.",
+  description: "RizzVerse - Where Words Captures Hearts.",
   keywords: ["AI Rizz", "Pickup Lines", "Attraction Engine", "Social Synergy", "Rizz Lab", "Dating AI"],
   authors: [{ name: "Anubhav" }],
   creator: "Anubhav",
   publisher: "RizzVerse",
 
   openGraph: {
-    title: "RizzVerse | Where Words Steal Hearts",
+    title: "RizzVerse | Where Words Captures Hearts",
     description: "Neural-powered charisma for the modern age. Elevate your game with AI-crafted charm.",
     url: baseUrl,
     siteName: "RizzVerse",
